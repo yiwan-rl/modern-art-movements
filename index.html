@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>Modern Art Movements</title>
+    <style>
+        :root {
+            --primary-color: #4a4e69;
+            --secondary-color: #9a8c98;
+            --accent-color: #c9ada7;
+            --light-color: #f2e9e4;
+            --dark-color: #22223b;
+            --transition: all 0.3s ease-in-out;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.copenhagenliving.com/wp-content/uploads/2024/08/modern-art-banner-2.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7);
+            z-index: -1;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(34, 34, 59, 0.9);
+            padding: 15px 0;
+            z-index: 100;
+            transition: var(--transition);
+            transform: translateY(-100%);
+        }
+        
+        nav.visible {
+            transform: translateY(0);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: var(--transition);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        section {
+            padding: 80px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 15px auto;
+        }
+        
+        .intro {
+            background-color: white;
+        }
+        
+        .intro-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .intro-text {
+            flex: 1;
+        }
+        
+        .intro-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .intro-image:hover {
+            transform: scale(1.03);
+        }
+        
+        .intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .movements {
+            background-color: var(--light-color);
+        }
+        
+        .movement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .movement-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .movement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .movement-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .movement-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .movement-card:hover .movement-image img {
+            transform: scale(1.1);
+        }
+        
+        .movement-info {
+            padding: 20px;
+        }
+        
+        .movement-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .timeline {
+            background-color: white;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary-color);
+            top: 180px;
+            bottom: 80px;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            margin-bottom: 50px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 40px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 40px;
+        }
+        
+        .timeline-content {
+            background-color: var(--light-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--light-color);
+            transform: rotate(45deg);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--light-color);
+            transform: rotate(45deg);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 10;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .gallery {
+            background-color: var(--light-color);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-caption {
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .modal-caption {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        .stats {
+            background-color: white;
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .chart-container {
+            margin-top: 50px;
+            height: 400px;
+            position: relative;
+        }
+        
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 40px;
+            background-color: var(--secondary-color);
+            transition: height 1s ease-out;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+        }
+        
+        .chart-bar:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -30px;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        
+        .chart-value {
+            position: absolute;
+            top: -25px;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .comparison {
+            background-color: var(--light-color);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            overflow-x: auto;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: rgba(201, 173, 167, 0.1);
+        }
+        
+        .comparison-table tr:hover {
+            background-color: rgba(201, 173, 167, 0.3);
+        }
+        
+        .cta {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: white;
+        }
+        
+        .cta-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .intro-content {
+                flex-direction: column;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0;
+                padding-right: 0;
+                padding-left: 60px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+                padding-left: 60px;
+            }
+            
+            .timeline-dot {
+                left: 20px !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -10px;
+                right: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: var(--dark-color);
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                transform: translateX(100%);
+                transition: var(--transition);
+                padding: 20px 0;
+            }
+            
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            .stats-container {
+                flex-direction: column;
+            }
+            
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .header-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id=\"home\">
+        <div class=\"header-bg\"></div>
+        <div class=\"header-content\">
+            <h1>Modern Art Movements</h1>
+            <p>Exploring the revolutionary shifts in artistic expression from the late 19th to early 20th centuries</p>
+            <a href=\"#intro\" class=\"btn\">Discover More</a>
+        </div>
+    </header>
+    
+    <nav id=\"navbar\">
+        <div class=\"nav-container\">
+            <div class=\"logo\">Modern Art</div>
+            <ul class=\"nav-links\">
+                <li><a href=\"#home\">Home</a></li>
+                <li><a href=\"#intro\">Introduction</a></li>
+                <li><a href=\"#movements\">Movements</a></li>
+                <li><a href=\"#timeline\">Timeline</a></li>
+                <li><a href=\"#gallery\">Gallery</a></li>
+                <li><a href=\"#stats\">Statistics</a></li>
+                <li><a href=\"#comparison\">Comparison</a></li>
+                <li><a href=\"#contact\">Contact</a></li>
+            </ul>
+            <div class=\"hamburger\">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </nav>
+    
+    <section id=\"intro\" class=\"intro\">
+        <div class=\"container\">
+            <h2 class=\"section-title\">Introduction to Modern Art</h2>
+            <div class=\"intro-content\">
+                <div class=\"intro-text\">
+                    <p>Modern art movements mark a significant shift away from traditional art styles towards more abstract and experimental approaches that emerged in the late 19th and early 20th centuries. This era of artistic revolution challenged conventional norms and established new ways of perceiving and creating art.</p>
+                    <p>Artists during this period experimented with form, color, and technique, often rejecting realistic representation in favor of expressing emotions, ideas, and the subconscious mind. These movements were frequently responses to rapid technological advancements, social changes, and the tumultuous political climate of the time.</p>
+                    <p>The diversity of modern art movements demonstrates the rich tapestry of artistic innovation that continues to influence contemporary art practices today. From the vibrant colors of Fauvism to the dreamlike imagery of Surrealism, each movement contributed unique perspectives to the art world.</p>
+                </div>
+                <div class=\"intro-image\">
+                    <img src=\"https://cdn.sanity.io/images/476nwnl9/production/b732bfeb6fefe178e8c66482152861662ddd6d2c-3000x2391.jpg\" alt=\"What is modern art? | MoMA\">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id=\"movements\" class=\"movements\">
+        <div class=\"container\">
+            <h2 class=\"section-title\">Key Modern Art Movements</h2>
+            <div class=\"movement-grid\">
+                <div class=\"movement-card\">
+                    <div class=\"movement-image\">
+                        <img src=\"https://miro.medium.com/v2/resize:fit:1400/1*lmIUhSjfKDrr6xGcxpnxsw.jpeg\" alt=\"Abstract Art\">
+                    </div>
+                    <div class=\"movement-info\">
+                        <h3>Abstract Art</h3>
+                        <p>Art that does not attempt to represent an accurate depiction of visual reality but instead uses shapes, colors, forms, and gestural marks to achieve its effect.</p>
+                    </div>
+                </div>
+                
+                <div class=\"movement-card\">
+                    <div class=\"movement-image\">
+                        <img src=\"https://www.marioferretti.com/wp-content/uploads/sites/29/2024/08/Ferretti-Abstraction.jpg\" alt=\"Abstract Expressionism\">
+                    </div>
+                    <div class=\"movement-info\">
+                        <h3>Abstract Expressionism</h3>
+                        <p>An American post-World War II art movement characterized by spontaneous creation and emotional intensity, often featuring gestural brush strokes or mark-making.</p>
+                    </div>
+                </div>
+                
+                <div class=\"movement-card\">
+                    <div class=\"movement-image\">
+                        <img src=\"https://i.ytimg.com/vi/WdEpb0y2WI4/maxresdefault.jpg\" alt=\"Cubism\">
+                    </div>
+                    <div class=\"movement-info\">
+                        <h3>Cubism</h3>
+                        <p>Revolutionary style of art developed by Pablo Picasso and Georges Braque that depicts subjects from multiple viewpoints simultaneously, breaking them into geometric shapes.</p>
+                    </div>
+                </div>
+                
+                <div class=\"movement-card\">
+                    <div class=\"movement-image\">
+                        <img src=\"https://images.squarespace-cdn.com/content/v1/6129e1d90fd5785f5023e7dd/aeca344f-d456-437c-9206-d5553feeaa59/Umberto_Boccioni%2C_Visioni_simultanee_%28Simultanvisionen%29%2C_oil_on_canvas%2C_60.5_%C3%97_60.5_cm%2C_Von_der_Heydt_Museum.jpg\" alt=\"Futurism\">
+                    </div>
+                    <div class=\"movement-info\">
+                        <h3>Futurism</h3>
+                        <p>Italian art movement that emphasized speed, technology, youth, and violence, and objects in motion, celebrating modern concepts like the car and the industrial city.</p>
+                    </div>
+                </div>
+                
+                <div class=\"movement-card\">
+                    <div class=\"movement-image\">
+                        <img src=\"http://arabelart.com/cdn/shop/articles/the-profound-influence-of-art-movements-on-contemporary-paintings-381632.jpg?v=1734508630\" alt=\"Surrealism\">
+                    </div>
+                    <div class=\"movement-info\">
+                        <h3>Surrealism</h3>
+                        <p>Movement focused on expressing the unconscious mind, featuring unexpected juxtapositions and non-sequitur imagery that challenges rational thought.</p>
+                    </div>
+                </div>
+                
+                <div class=\"movement-card\">
+                    <div class=\"movement-image\">
+                        <img src=\"https://i.ytimg.com/vi/dN3jjD3k1Iw/maxresdefault.jpg\" alt=\"Pop Art\">
+                    </div>
+                    <div class=\"movement-info\">
+                        <h3>Pop Art</h3>
+                        <p>Art movement that emerged in the 1950s that challenged traditions by including imagery from popular culture such as advertising, comic books, and mundane cultural objects.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id=\"timeline\" class=\"timeline\">
+        <div class=\"container\">
+            <h2 class=\"section-title\">Timeline of Modern Art</h2>
+            
+            <div class=\"timeline-item\">
+                <div class=\"timeline-dot\"></div>
+                <div class=\"timeline-content\">
+                    <div class=\"timeline-date\">1870s - 1890s</div>
+                    <h3>Impressionism</h3>
+                    <p>Focused on capturing the momentary effect of light and movement, characterized by small, visible brushstrokes and emphasis on accurate depiction of light.</p>
+                </div>
+            </div>
+            
+            <div class=\"timeline-item\">
+                <div class=\"timeline-dot\"></div>
+                <div class=\"timeline-content\">
+                    <div class=\"timeline-date\">1890s - 1910s</div>
+                    <h3>Post-Impressionism</h3>
+                    <p>Extended Impressionism while rejecting its limitations, emphasizing geometric forms, distortion, arbitrary color, and expressive content.</p>
+                </div>
+            </div>
+            
+            <div class=\"timeline-item\">
+                <div class=\"timeline-dot\"></div>
+                <div class=\"timeline-content\">
+                    <div class=\"timeline-date\">1905 - 1910</div>
+                    <h3>Fauvism</h3>
+                    <p>Characterized by bold, undisguised brushstrokes and vibrant, non-naturalistic colors used for expressive effect.</p>
+                </div>
+            </div>
+            
+            <div class=\"timeline-item\">
+                <div class=\"timeline-dot\"></div>
+                <div class=\"timeline-content\">
+                    <div class=\"timeline-date\">1907 - 1914</div>
+                    <h3>Cubism</h3>
+                    <p>Revolutionary approach to representing reality, analyzing objects and breaking them up and reassembling them in an abstracted form.</p>
+                </div>
+            </div>
+            
+            <div class=\"timeline-item\">
+                <div class=\"timeline-dot\"></div>
+                <div class=\"timeline-content\">
+                    <div class=\"timeline-date\">1916 - 1924</div>
+                    <h3>Dadaism</h3>
+                    <p>Anti-war movement that rejected the prevailing standards in art through anti-art cultural works and demonstrations.</p>
+                </div>
+            </div>
+            
+            <div class=\"timeline-item\">
+                <div class=\"timeline-dot\"></div>
+                <div class=\"timeline-content\">
+                    <div class=\"timeline-date\">1924 - 1966</div>
